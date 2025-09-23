@@ -1,16 +1,23 @@
 package io.datajek.spring.basics.movie_recommender_system;
+import java.util.Arrays;
 
+import io.datajek.spring.basics.movie_recommender_system.lesson1.ContentBasedFilter;
 import io.datajek.spring.basics.movie_recommender_system.lesson1.RecommenderImplementation;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import java.util.Arrays;
-
 @SpringBootApplication
 public class MovieRecommenderSystemApplication {
+
     public static void main(String[] args) {
-        RecommenderImplementation recommender = new RecommenderImplementation();
+        //SpringApplication.run(MovieRecommenderSystemApplication.class, args);
+
+        //passing name of the filter as constructor argument
+        RecommenderImplementation recommender = new RecommenderImplementation(new ContentBasedFilter());
+        //call method to get recommendations
         String[] result = recommender.recommendMovies("Finding Dory");
+        //display results
         System.out.println(Arrays.toString(result));
+
     }
 }
